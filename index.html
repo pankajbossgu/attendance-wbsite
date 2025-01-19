@@ -1,37 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attendance Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            background-image: url('background.jpg'); /* Add your background image */
+            background-size: cover;
+            background-position: center;
+        }
+        header {
+            background: rgba(0, 123, 255, 0.8);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        header img {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            height: 50px;
+        }
+        main {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 80px);
+        }
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        select,
+        input[type="date"],
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to Attendance Tracker</h1>
-  <p>Your Firebase integration is set up!</p>
+    <header>
+        <img src="logo.png" alt="Company Logo"> <!-- Add your logo image -->
+        <h1>Attendance Tracker</h1>
+    </header>
+    <main>
+        <form>
+            <label for="attendance-date">Select Date:</label>
+            <input type="date" id="attendance-date" name="date">
 
-  <!-- Add your content and scripts here -->
+            <label for="employee-name">Select Employee Name:</label>
+            <select id="employee-name" name="employee-name">
+                <option value="">Select Employee</option>
+                <option value="Akriti">Akriti</option>
+                <option value="Manab">Manab</option>
+                <option value="Pankaj">Pankaj</option>
+                <option value="Harshita">Harshita</option>
+                <option value="Sakib">Sakib</option>
+                <option value="Radha">Radha</option>
+                <option value="Manu">Manu</option>
+            </select>
 
-  <!-- Firebase Integration -->
-  <script type="module">
-    // Import Firebase libraries
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
+            <label for="attendance-status">Select Status:</label>
+            <select id="attendance-status" name="attendance-status">
+                <option value="">Select Status</option>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Half Day">Half Day</option>
+                <option value="Week Off">Week Off</option>
+                <option value="Leave">Leave</option>
+            </select>
 
-    // Your Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBC5zhxoa3YY3520AohWzopvc",
-      authDomain: "attendance-tracker-51b70.firebaseapp.com",
-      projectId: "attendance-tracker-51b70",
-      storageBucket: "attendance-tracker-51b70.appspot.com",
-      messagingSenderId: "976773468129",
-      appId: "1:976773468129:web:cfba44de917c",
-      measurementId: "G-S41Y30WX8P"
-    };
+            <button type="submit">Mark Attendance</button>
+        </form>
+    </main>
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    console.log('Firebase initialized successfully');
-  </script>
+    <script>
+        // Set today's date as default
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('attendance-date').value = today;
+    </script>
 </body>
 </html>
