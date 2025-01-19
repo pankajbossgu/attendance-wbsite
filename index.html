@@ -1,199 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance Tracker</title>
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #007bff, #00d2ff);
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Header Styles */
-        header {
-            width: 100%;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-        }
-
-        header .title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        header .company-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Navigation Styles */
-        nav {
-            width: 100%;
-            background: #007bff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #00d2ff;
-        }
-
-        /* Main Content Styles */
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 30px auto;
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        select, input[type="date"], button {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        select:hover, input[type="date"]:hover {
-            border-color: #007bff;
-        }
-
-        button {
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        /* Footer Styles */
-        footer {
-            width: 100%;
-            background: #007bff;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-        }
-
-        footer a {
-            color: white;
-            margin: 0 8px;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #00d2ff;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nxtlift Marketing Pvt. Ltd. - Attendance Tracker</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="title">Attendance Tracker</div>
-        <div class="company-name">Nxtlift Marketing Pvt. Ltd.</div>
-    </header>
-
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Attendance</a>
-    </nav>
-
+  <header class="header">
     <div class="container">
-        <h2>Mark Attendance</h2>
-        <form>
-            <div class="form-group">
-                <label for="date">Select Date:</label>
-                <input type="date" id="date" name="date" value="2025-01-19">
-            </div>
-
-            <div class="form-group">
-                <label for="employee">Select Employee Name:</label>
-                <select id="employee" name="employee">
-                    <option value="Pankaj">Pankaj</option>
-                    <option value="Akriti">Akriti</option>
-                    <option value="Manab">Manab</option>
-                    <option value="Harshita">Harshita</option>
-                    <option value="Sakib">Sakib</option>
-                    <option value="Manu">Manu</option>
-                    <option value="Radha">Radha</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="status">Select Status:</label>
-                <select id="status" name="status">
-                    <option value="Present">Present</option>
-                    <option value="Absent">Absent</option>
-                    <option value="Leave">Leave</option>
-                </select>
-            </div>
-
-            <button type="submit">Mark Attendance</button>
-        </form>
+      <h1>Nxtlift Marketing Pvt. Ltd.</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <footer>
-        Follow us on: 
-        <a href="https://twitter.com">Twitter</a> | 
-        <a href="https://facebook.com">Facebook</a> | 
-        <a href="https://linkedin.com">LinkedIn</a>
-        <br>&copy; 2025 Nxtlift Marketing Pvt. Ltd.
-    </footer>
+  <main class="main-content">
+    <div class="form-container">
+      <h2>Attendance Tracker</h2>
+      <form>
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date">
+
+        <label for="employee">Select Employee Name:</label>
+        <select id="employee" name="employee">
+          <option value="Pankaj">Pankaj</option>
+          <option value="Akriti">Akriti</option>
+          <option value="Manab">Manab</option>
+          <option value="Harshita">Harshita</option>
+          <option value="Sakib">Sakib</option>
+          <option value="Manu">Manu</option>
+          <option value="Radha">Radha</option>
+        </select>
+
+        <label for="status">Select Status:</label>
+        <select id="status" name="status">
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+        </select>
+
+        <button type="submit" class="submit-btn">Mark Attendance</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Nxtlift Marketing Pvt. Ltd. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#">Twitter</a>
+        <a href="#">Facebook</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
