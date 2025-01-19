@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details Lookup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Order Details Lookup</h2>
+        <div class="mb-3">
+            <label for="orderId" class="form-label">Enter Order ID:</label>
+            <input type="text" id="orderId" class="form-control" placeholder="e.g., 95899">
+        </div>
+        <button id="getDetails" class="btn btn-primary w-100">Get Details</button>
+        <div id="output" class="mt-4"></div>
+        <div id="error" class="error"></div>
+    </div>
+
+    <script>
+        document.getElementById('getDetails').addEventListener('click', function() {
+            const orderId = document.getElementById('orderId').value.trim();
+            const output = document.getElementById('output');
+            const error = document.getElementById('error');
+            output.innerHTML = '';
+            error.innerHTML = '';
+
+            if (!orderId) {
+                error.textContent = 'Please enter an Order ID.';
+                return;
+            }
+
+            Papa.parse('combined_order_data.csv', {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    const data = results.data;
+                    const order = data.find(row => row['Order ID'] === orderId);
+
+                    if (order) {
+                        output.innerHTML = `
+                            <h4>Order Details:</h4>
+                            <p><strong>Customer Name:</strong> ${order['Customer Name']}</p>
+                            <p><strong>Mobile:</strong> ${order['Mobile']}</p>
+                            <p><strong>Address:</strong> ${order['Address']}</p>
+                            <p><strong>Order Details:</strong> ${order['Order Details']}</p>
+                        `;
+                    } else {
+                        error.textContent = 'Order ID not found. Please try again.';
+                    }
+                },
+                error: function() {
+                    error.textContent = 'Error loading data file. Please check your file or network connection.';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
