@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details Lookup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Details Lookup</h1>
+        <input type="text" id="orderIdInput" placeholder="Enter Order ID">
+        <button onclick="fetchOrderDetails()">Get Details</button>
+        <div id="result" class="result"></div>
+    </div>
+    <script>
+        async function fetchOrderDetails() {
+            const orderId = document.getElementById("orderIdInput").value.trim();
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+            
+            if (!orderId) {
+                resultDiv.innerHTML = "<p class='error'>Please enter a valid Order ID.</p>";
+                return;
+            }
+
+            try {
+                const response = await fetch('order_data.csv');
+                const data = await response.text();
+                const rows = data.split('\n').map(row => row.split(','));
+                const headers = rows[0];
+                const orderIndex = headers.indexOf("ORDER ID");
+
+                // Find the matching order
+                const order = rows.find(row => row[orderIndex] === orderId);
+                if (order) {
+                    let details = "<h3>Order Details</h3>";
+                    headers.forEach((header, index) => {
+                        details += `<p><strong>${header}:</strong> ${order[index]}</p>`;
+                    });
+                    resultDiv.innerHTML = details;
+                } else {
+                    resultDiv.innerHTML = "<p class='error'>Order ID not found. Please try again.</p>";
+                }
+            } catch (error) {
+                resultDiv.innerHTML = "<p class='error'>Failed to load order data. Please try again later.</p>";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
